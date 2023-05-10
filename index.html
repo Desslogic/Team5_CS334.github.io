@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends "base.html" %}
+
+    {% block head %}
+        <link rel="manifest" href="manifest.json">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+        <link rel="stylesheet" href="swiper/css/swiper.css">
+    {% endblock %}
+    
+    {% block content %}
+    <body>
+        <header>
+            <a href="#" class="logo"><i class="image/italian_flag"></i>delizioso gelato</a>
+            <nav class="navbar">
+                <a href="#home" class="active">home</a>
+                <a href="#dishes">Top Selling</a>
+                <a href="#top">Popular</a>
+                <a href="#menu">menu</a>
+                <a href="#about">about us</a>
+            </nav>
+            <div class="icons">
+                <i class="fa fa-bars" id="bars"></i>
+                <i class="fa fa-search" id="search"></i>
+                <a href="#" class="fa fa-heart"></a>
+                <i class="fa fa-shopping-cart" id="cart-icon"></i>
+                <!--Shopping Cart-->
+                <div class="shopping-cart">
+
+                    <h4>Shopping Cart</h4>
+                    <ul id="cart-items"></ul>
+                    <div id="cart-total"></div>
+
+                </div>
+            </div>
+            <!--End of Shopping cart -->
+        </header>
+        <!--End Of Header-->
+        <section class="home" id="home">
+            <div class="swiper-container home-slider">
+                <div class="swiper-wrapper wrapper">
+                    <div class="swiper-slide slide">
+                        <div class="content">
+                            <span>An Italian Classic</span>
+                            <h3>Original Italian Gelato</h3>
+                            <p>
+                                Our gelato is made from a family original recipe given to us by some of the best known 
+                                italian experts.
+                            </p>
+                        </div>
+                        <div class="image">
+                            <img src="image/cone_gelato.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide slide">
+                        <div class="content">
+                            <span>An Italian Classic</span>
+                            <h3>a flavor for everyone</h3>
+                            <p>
+                                finish off your day with a cool refreshing pint of our famous gelato. your 
+                                family will enjoy every bite.
+                            </p>
+                        </div>
+                        <div class="image">
+                            <img src="image/gelato_bowl.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="swiper-slide slide">
+                        <div class="content">
+                            <span>An Italian Classic</span>
+                            <h3>Always innovating</h3>
+                            <p>
+                                We strive in creating the best tasting gelato for everyone. New flavors are added on 
+                                a rotational basis. 
+                            </p>
+                        </div>
+                        <div class="image">
+                            <img src="image/gelato_variety.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <!--End oF Home-->
+        <section class="dishes" id="dishes">
+            <h1 class="heading">Our Top Selling Gelato</h1>
+            <!-- container that gets information from a json file -->
+            <div id="product-container"></div>
+
+        </section>
+        <!--End Of dishes-->
+        <section class="top" id="top">
+            <h1 class="heading">Popular Flavors</h1>
+            <div class="row">
+                <div class="image-container">
+                    <div class="small-image">
+                        <img src="image/cookies_cream.jpeg" alt="" class="top-image">
+                        <img src="image/funfetti.jpg" alt="" class="top-image">
+                        <img src="image/red_velvet.jpg" alt="" class="top-image">
+                        <img src="image/tiramisu.jpg" alt="" class="top-image">
+                        <img src="image/mint_chip.jpg" alt="" class="top-image">
+                        <img src="image/whiskey_cream.jpeg" alt="" class="top-image">
+                    </div>
+                    <div class="big-image">
+                        <img src="image/gelato_bowl.jpg" alt="" class="big-image1">
+                    </div>
+                </div>
+                <div class="content">
+                    <h3>Top Gelato Flavors</h3>
+                    <div class="stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <p>
+                        Try our delicous new gelato flavors at a discounted price. 
+                        Available for a limited time only. Grab a few pints today.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <!--End Of Top-->
+        <section class="menu" id="menu">
+            <h3 class="heading">Our Menu</h3>
+        <!-- container that gets information from a json file -->
+            <div id="bestsellers"></div>
+
+        </section>
+        <!--End Of menu-->
+        <section class="about" id="about">
+            <h3 class="heading">about us</h3>
+            <div class="row">
+                <div class="image">
+                    <img src="image/cone_gelato.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Original Italian Gelato Store</h3>
+                    <p>
+                        This is a semester project created by students of Eastern New Mexico University.
+                        The website is for an Ice Cream shop that demonstrates the teams ability to create 
+                        a full stack webpage. 
+                    </p>
+                    <div class="icons-container">
+                        <div class="icons">
+                            <i class="fa fa-truck"></i>
+                            <span>Delivery Available</span>
+                        </div>
+                        <div class="icons">
+                            <i class="fa fa-dollar"></i>
+                            <span>Easy Payments</span>
+                        </div>
+                        <div class="icons">
+                            <i class="fa fa-clock-o"></i>
+                            <span>24/7 service</span>
+                        </div>
+                    </div>
+                    <a href="#" class="btn">learn more</a>
+                </div>
+            </div>
+        </section>
+        <!--End Of About-->
+        <div class="copy-right">
+            CS 334 Team 5 Project
+        </div>
+        <script src="swiper/js/swiper.min.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/cart.js"></script>
+        <script src="js/productupdate.js"></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                .register('sw.js')
+                .then((registration) => {
+                console.log('Service Worker Registered:', registration);
+                })
+                .catch((error) => {
+                console.log('Service Worker Registration Failed:', error);
+                });
+            }
+        </script>
+    </body>
+    {% endblock %}
+</html>

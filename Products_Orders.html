@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/ManageProduct-styles.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='font-awesome/css/font-awesome.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='swiper/css/swiper.css') }}">
+    </head>
+    <body>
+        <section>
+            <header>
+                <a href="#" class="logo"><i class="image/italian_flag"></i>delizioso gelato Management</a>
+                <nav class="navbar">
+                    <a href="#home" class="active">home</a>
+                    <a href="#Add-products">Add Product</a>
+                    <a href="#orders-section">Manage Orders</a>
+                </nav>
+                <div class="icons">
+                    <i class="fa fa-bars" id="bars"></i>
+                    <i class="fa fa-search" id="search"></i>
+                    <a href="#" class="fa fa-heart"></a>
+                    <a href="#" class="fa fa-shopping-cart"></a>
+                </div>
+            </header>
+        </section>
+        <section class="Add-products" id="Add-products">
+            <div class ="Add">
+                <h2>Add Product</h2>
+                <p>Enter product information</p>
+                <ul>
+                    <li>Product Name: <input id ="name" type="text"></li>
+                    <li>Product Image: <input id ="img" type="text"></li>
+                    <li>Product Price: <input id ="price" type="text"></li>
+                    <li>Description: <input id ="description" type="text"></li>        
+                </ul>
+                <input type="button" id="add" value="Add Product" />
+            </div>
+            <section class="dishes" id="dishes">
+                <div class="box-container">
+                    {% for product in products %}
+                    <div class="box">
+                        <img src="{{ product.image_url }}" alt="">
+                        <input type="button" id="del" value="X" />
+                        <div id="text">
+                            <h3>{{ product.name }}</h3>
+                            <span>${{ product.price }}</span>
+                            <p>{{ product.description }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </section>
+        <section class="orders-section" id="orders-section">
+            <div class ="orders">
+                <h2>Manage Orders</h2>
+                <p>Enter Order information</p>
+                <ul>
+                    <li>Customer Name: <input id ="customer" type="text"></li>
+                    <li>Oder Id: <input id ="id" type="text"></li>        
+                </ul>
+                <input type="button" id="lookUp" value="Look Up" />
+            </div>
+            <section class="all-orders" id="all-orders">
+                <div class="order-container">
+                    {% for order in orders %}
+                    <div class="order-box" id="{{ order.id }}">
+                        <input type="button" id="del" value="X" />
+                        <div id="text">
+                            <h3>{{ order.customer_name }}</h3>
+                            <span>id: {{ order.id }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </section>
+    </body>
+</html>

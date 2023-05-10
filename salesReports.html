@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="swiper/css/swiper.css">
+    <title>Order Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .search {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo"><i class="image/italian_flag"></i>delizioso gelato</a>
+        <nav class="navbar">
+            <a href="managementportal.html" class="active">LogOut</a>
+        </nav>
+    </header>
+    <div class="container" style="margin-top: 25em;"></div>
+    <h1>Order Management</h1>
+    <input class="search" type="text" id="searchInput" placeholder="Search orders...">
+    <button id="exportCSV" onclick="exportTableToCSV()">Export to CSV</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Sale</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="orderTable">
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.name }}</td>
+                    <td>{{ order.email }}</td>
+                    <td>{{ order.sale }}</td>
+                    <td>
+                        <button onclick="editOrder({{ order.id }})">Edit</button>
+                        <button onclick="deleteOrder({{ order.id }})">Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        // Sample order data
+        const orders = [
+            { id: 1, name: 'John Doe', email: 'john.doe@example.com', sale: 12.99 },
+            { id: 2, name: 'Jane Smith', email: 'jane.smith@example.com', sale: 34.89 },
+            { id: 3, name: 'John Smith', email: 'john.smith@example.com', sale: 99.99 },
+            { id: 4, name: 'Jane Doe', email: 'jane.doe@example.com', sale: 12.99 },
+            // Add more sample orders here
+        ];
+
+        // Populate the order table
+const orderTable = document.getElementById('orderTable');
+orders.forEach(order => {
+const row = orderTable.insertRow();
+
+row.insertCell().textContent = order.id;
+row.insertCell().textContent = order.name;
+row.insertCell().textContent = order.email;
+row.insertCell().textContent = order.sale; 
+const actionsCell = row.insertCell();
+const editButton = document.createElement('button');
+editButton.textContent = 'Edit';
+editButton.onclick = () => editOrder(order.id);
+actionsCell.appendChild(editButton);
+
+const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Delete';
+deleteButton.onclick = () => deleteOrder(order.id);
+actionsCell.appendChild(deleteButton);  
+});
+
+        // Edit and delete order functions (replace with actual implementation)
+        function editOrder(id) {
+            alert(`Edit order ${id}`);
+        }
+
+        function deleteOrder(id) {
+            alert(`Delete order ${id}`);
+        }
+
+        // Search orders
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchText = this.value.toLowerCase();
+            Array.from(orderTable.rows).forEach(row => {
+                row.style.display = Array.from(row.cells).some(cell => 
+                    cell.textContent.toLowerCase().includes(searchText)
+                ) ? '' : 'none';
+            });
+        });
+          // Convert the table data to CSV format
+        function convertToCSV(orders) {
+            const csvHeader = ['Order ID', 'Customer Name', 'Email', 'Sale'];
+            const csvRows = orders.map(order => [order.id, order.name, order.email, order.sale]);
+            const csvContent = [csvHeader, ...csvRows].map(row => row.join(',')).join('\n');
+            return csvContent;
+        }
+
+        // Download the CSV file
+        function exportTableToCSV() {
+            const csvContent = convertToCSV(orders);
+            const csvBlob = new Blob([csvContent], { type: 'text/csv' });
+            const downloadLink = document.createElement('a');
+            downloadLink.href = URL.createObjectURL(csvBlob);
+            downloadLink.download = 'orders.csv';
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        }
+    </script>
+</body>
+</html>

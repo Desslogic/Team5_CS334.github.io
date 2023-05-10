@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Upload, Resize, and Crop</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.css' %}">
+<link rel="stylesheet" href="{% static 'swiper/css/swiper.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.6/cropper.min.js"></script>
+</head>
+<body>
+<header>
+    <a href="#" class="logo"><i class="image/italian_flag"></i>delizioso gelato</a>
+    <nav class="navbar">
+    <a href="{{ url_for('management_portal') }}" class="active">Log Out</a>
+    </nav>
+</header>
+
+{% block content %}
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="{% static 'js/your_script.js' %}"></script>
+{% block extra_js %}
+{% endblock %}
+</body>
+</html>

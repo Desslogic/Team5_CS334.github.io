@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <link rel="stylesheet" href="css/managementportal.css">
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="swiper/css/swiper.css">
+    <style>
+      input[type="email"] {
+        text-transform: none;
+      }
+    </style>
+        <!-- TODO: Add the EmailJS scripts here -->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+        <script type="text/javascript">
+          (function(){
+              emailjs.init("service_3otnaya"); // Replace YOUR_USER_ID with the user ID you get from EmailJS
+          })();
+        </script>
+        <!-- End of EmailJS scripts -->
+    
+      </head>
+  </head>
+  <header>
+    <a href="#" class="logo"><i class="image/italian_flag"></i>delizioso gelato</a>
+    <nav class="navbar">
+      <a id="logout">LogOut</a>
+      <a id="sales_reports">Sales Reports</a>
+      <a id="edit_products">Edit Products</a>
+    </nav>
+  </header>
+  <div class="container" style="margin-top: 25em; margin-left: 25em;">
+    <body style="margin:5px 5px 5px 5px; background: #eeeeee">
+      <input type="hidden" id="anPageName" name="page" value="managementportal" />
+      <div class="container-center-horizontal">
+        <div class="managementportal screen">
+          <div class="flex-col flex">
+            <div class="overlap-group5">
+              <div class="delizioso-gelato-management-zone">Enter Employee Email Address And Password</div>
+            </div>
+            <h1 class="management-portal">Management Zone</h1>
+          </div>
+          <div class="flex-row flex">
+            <div class="flex-col-1">
+              <form id="login-form" method="POST" action="{{ url_for('login') }}">
+                {{ form.csrf_token }}
+                <div class="overlap-group6">
+                  <label for="manager-id" class="manager-id">Employee Email: </label>
+                  {{ form.email(id='manager-id', placeholder='Enter Manager ID', required=True, style='width: 300px; height: 40px;') }}
+                </div>
+                <div class="overlap-group4">
+                  <label for="password" class="password">Password: </label>
+                  {{ form.password(id='password', placeholder='Enter Password', required=True) }}
+                </div>
+                <button type="submit" id="submit" class="active">Submit</button>
+              </form>              
+            </div>
+            <div class="flex-col-2">
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+  </div>
+</html>
